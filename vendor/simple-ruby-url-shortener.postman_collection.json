@@ -1,0 +1,92 @@
+{
+	"info": {
+		"_postman_id": "176e8ed9-783d-4d72-af51-59db589230dc",
+		"name": "simple-ruby-url-shortener",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "3630043",
+		"_collection_link": "https://blue-firefly-274199.postman.co/workspace/634febb5-b864-4a4b-bb86-2db2078500bc/collection/3630043-176e8ed9-783d-4d72-af51-59db589230dc?action=share&source=collection_link&creator=3630043"
+	},
+	"item": [
+		{
+			"name": "lvh.me:3000/urls",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"url\": \"https://github.com/jalrax/simple-ruby-url-shortener\"}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "lvh.me:3000/urls",
+					"host": [
+						"lvh",
+						"me"
+					],
+					"port": "3000",
+					"path": [
+						"urls"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "lvh.me:3000/urls/:short_url",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "lvh.me:3000/urls/:short_url",
+					"host": [
+						"lvh",
+						"me"
+					],
+					"port": "3000",
+					"path": [
+						"urls",
+						":short_url"
+					],
+					"variable": [
+						{
+							"key": "short_url",
+							"value": "9e4373"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "lvh.me:3000/urls/:short_url/stats",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "lvh.me:3000/urls/:short_url/stats",
+					"host": [
+						"lvh",
+						"me"
+					],
+					"port": "3000",
+					"path": [
+						"urls",
+						":short_url",
+						"stats"
+					],
+					"variable": [
+						{
+							"key": "short_url",
+							"value": ""
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
