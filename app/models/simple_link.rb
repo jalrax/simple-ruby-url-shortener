@@ -6,10 +6,7 @@ class SimpleLink < ApplicationRecord
   validates_uniqueness_of :url, :short_url
 
   def shorten_url
-    regex = /(https:\/\/www\.|http:\/\/www\.|https:\/\/|http:\/\/)?[a-zA-Z0-9]{2,}(\.[a-zA-Z0-9]{2,})(\.[a-zA-Z0-9]{2,})?/
-    url_host = url.match(regex)[0]
-
-    self.short_url = url_host + '/' + SecureRandom.uuid[0..5] if self.short_url.nil? || self.short_url.empty?
+    self.short_url = SecureRandom.uuid[0..5] if self.short_url.nil? || self.short_url.empty?
     true
   end
 end

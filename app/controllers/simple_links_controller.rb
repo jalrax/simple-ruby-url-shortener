@@ -3,11 +3,12 @@ class SimpleLinksController < ApplicationController
 
   def add_url
     @simple_link = SimpleLink.create!(url: clean_params)
-    render json: @simple_link.short_url
+    short_url = SimpleLinkService.new(@simple_link).get_link
+    render json: short_url
   end
 
   def get_url
-    ClickIncrement.new(@simple_link).increment_link_counter
+    SimpleLinkService.new(@simple_link).increment_link_counter
     render json: @simple_link.url
   end
 
