@@ -1,13 +1,14 @@
+require 'uri'
+
 class SimpleLinkService
   def initialize(simple_link)
     @simple_link = simple_link
   end
 
   def get_link
-    regex = /(https:\/\/www\.|http:\/\/www\.|https:\/\/|http:\/\/)?[a-zA-Z0-9]{2,}(\.[a-zA-Z0-9]{2,})(\.[a-zA-Z0-9]{2,})?/
-    url_host = @simple_link.url.match(regex)[0]
-
-    url_host + '/' + @simple_link.short_url
+    uri = URI.parse(@simple_link.url)
+    host = [uri.scheme, uri.host].join('://')
+    File.join(host, @simple_link.short_url)
   end
 
   def increment_link_counter
