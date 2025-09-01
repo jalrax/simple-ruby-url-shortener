@@ -1,0 +1,32 @@
+# Пример использования GitLab CI для background jobs
+
+stages:
+  - scheduled_jobs
+
+# Ежедневная задача
+daily_cleanup:
+  stage: scheduled_jobs
+  script:
+    - bundle exec rails cleanup:old_records
+  only:
+    - schedules
+  rules:
+    - if: '$SCHEDULE_TYPE == "daily"'
+
+# Еженедельная задача
+weekly_report:
+  stage: scheduled_jobs
+  script:
+    - bundle exec rails reports:generate_weekly
+  only:
+    - schedules
+  rules:
+    - if: '$SCHEDULE_TYPE == "weekly"'
+
+# Задача по webhook
+process_webhook:
+  stage: scheduled_jobs
+  script:
+    - bundle exec rails webhooks:process
+  only:
+    - triggers
